@@ -1,3 +1,8 @@
 *.env
 */node_modules
 */.idea
+*/api/appsettings.Development.json
+*/api/bin
+*/api/.idea/
+*/api/obj/
+*/api/Folder.*
