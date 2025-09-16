@@ -6,3 +6,10 @@
 */api/.idea/
 */api/obj/
 */api/Folder.*
+*/appsettings.Development.json
+*/bin
+*/.idea/
+*/obj/
+*/Folder.*
+*/.vs
+*/*/Properties/

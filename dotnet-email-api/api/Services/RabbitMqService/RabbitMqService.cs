@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using System.Text.Json;
 using api.Models;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -112,14 +111,14 @@ namespace api.Services.RabbitMqService
                     _logger.LogError(e, "Error processing email message: {Message}", json);
                     _channel.BasicNack(ea.DeliveryTag, false, true);
                 }
-
-                _channel.BasicConsume(
-                    queue: _settings.EmailQueueName,
-                    autoAck: false,
-                    consumer: consumer);
-
-                _logger.LogInformation("Started consuming message from {Queue}", _settings.EmailQueueName);
             };
+            
+            _channel.BasicConsume(
+                queue: _settings.EmailQueueName,
+                autoAck: false,
+                consumer: consumer);
+
+            _logger.LogInformation("Started consuming message from {Queue}", _settings.EmailQueueName);
         }
 
         public void Dispose()
