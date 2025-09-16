@@ -13,3 +13,7 @@
 */Folder.*
 */.vs
 */*/Properties/
+background-api/*.csproj.user
+background-api/*.sln
+background-api/Properties/
+background-api/*.sln
