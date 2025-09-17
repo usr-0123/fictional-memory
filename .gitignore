@@ -17,3 +17,7 @@ background-api/*.csproj.user
 background-api/*.sln
 background-api/Properties/
 background-api/*.sln
+email-api/*.csproj.user
+email-api/*.http
+email-api/*.sln
+*/Properties/
