@@ -125,8 +125,6 @@ namespace api.Services.RabbitMqService
         {
             _channel?.Dispose();
             _connection?.Dispose();
-            _channel?.Dispose();
-            _connection?.Dispose();
         }
     }
 }
