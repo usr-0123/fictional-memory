@@ -1,22 +1,38 @@
 version: '1.0.0'
 
 services:
-  ui:
+  react-ui:
     build: ./react-ui
-    container_name: client
+    container_name: react-ui
     environment:
       VITE_API_URL: "${VITE_API_URL}"
     ports:
-      - "5173:5173"
+      - "8082:5173"
     volumes:
       - ./react-ui:/app
       - /app/node_modules
 
-  api:
+  express-api:
     build: ./express-api
-    container_name: server
+    container_name: express-api
     ports:
-      - "3010:3010"
+      - "8081:3010"
+    env_file:
+      - ./.env
+
+  background-api:
+    build: ./background-api
+    container_name: background-api
+    # ports:
+    #   - ""
+    env_file:
+      - ./.env
+
+  email-api:
+    build: ./email-api
+    container_name: email-api
+    ports:
+      - "8083:5239"
     env_file:
       - ./.env
 
@@ -24,18 +40,18 @@ services:
     image: nginx:latest
     container_name: nginx_proxy
     ports:
-      - "8080:80"
+      - "8084:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - ui
-      - api
+      - react-ui
+      - express-api
 
   db:
     image: postgres:16
     container_name: postgre_sql_db
     ports:
-      - "5432:5432"
+      - "8085:5432"
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: "${DB_PASSWORD}"
@@ -52,7 +68,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: "${POSTGRE_DB_EMAIL}"
       PGADMIN_DEFAULT_PASSWORD: "${DB_PASSWORD}"
     ports:
-      - "8084:80"
+      - "8086:80"
 
 volumes:
   postgres_data:

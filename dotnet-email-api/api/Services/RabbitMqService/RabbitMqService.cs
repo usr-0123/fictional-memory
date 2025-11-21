@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Text.Json;
 using api.Models;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;

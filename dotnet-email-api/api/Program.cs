@@ -17,6 +17,8 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 // Configure RabbitMQ settings
 builder.Services.Configure<RabbitMqSettings>(builder.Configuration.GetSection("RabbitMQ"));
 
+var rabbit = builder.Configuration.GetSection("RabbitMQ");
+
 // Register services
 builder.Services.AddSingleton<IRabbitMqService, RabbitMqService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
